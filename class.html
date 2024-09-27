@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dipti Singh's Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        :root {
+            --primary-color: #722F37;
+            --secondary-color: #FFA500;
+            --background-color: #1a1a1a;
+            --text-color: #ffffff;
+            --link-hover-color: #3498db;
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(#ffffff10 1px, transparent 1px),
+                radial-gradient(#ffffff10 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            z-index: -1;
+        }
+        header {
+            background-color: var(--primary-color);
+            padding: 2rem 2rem; /* Reduced padding to decrease height */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, #9c3f4980 0%, var(--primary-color) 70%);
+            z-index: 0;
+        }
+        header > * {
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 2.2rem;
+            margin-top: 0.5rem;
+            color: var(--text-color);
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        .role {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        .cta-button {
+            background-color: var(--secondary-color);
+            color: var(--background-color);
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .cta-button:hover {
+            background-color: #FFB52E;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+        }
+        nav {
+            background-color: var(--primary-color);
+            padding: 0.7rem 2rem;
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
+            margin: 0 0.7rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        nav a:hover, nav a:focus {
+            background-color: var(--secondary-color);
+            color: var(--background-color);
+        }
+        main {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .about-me {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+        }
+        .profile-pic-large {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 2rem;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .about-content {
+            flex: 1;
+        }
+        .section {
+            margin-bottom: 4rem;
+        }
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.7rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+        .skill-item {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .skill-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .portfolio-item {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .portfolio-item-content {
+            padding: 1.5rem;
+        }
+        .portfolio-item h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+        .contact-info a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: var(--link-hover-color);
+        }
+        /* New styles for static background objects */
+        .background-objects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .object {
+            position: absolute;
+            opacity: 0.1;
+        }
+        .circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            top: 20%;
+            left: 10%;
+        }
+        .square {
+            width: 60px;
+            height: 60px;
+            background-color: var(--text-color);
+            transform: rotate(45deg);
+            top: 60%;
+            right: 15%;
+        }
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 70px solid var(--secondary-color);
+            top: 30%;
+            right: 10%;
+        }
+        .rectangle {
+            width: 120px;
+            height: 40px;
+            background-color: var(--text-color);
+            top: 70%;
+            left: 20%;
+        }
+        .oval {
+            width: 120px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            top: 10%;
+            right: 30%;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <header>
+        <div class="background-objects">
+            <div class="object circle"></div>
+            <div class="object square"></div>
+            <div class="object triangle"></div>
+            <div class="object rectangle"></div>
+            <div class="object oval"></div>
+        </div>
+        <h1>Hey there!</h1>
+        <p class="subtitle">I'm Dipti Singh</p>
+        <p class="role">Aspiring Web Developer</p>
+        <a href="#portfolio" class="cta-button">View My Work</a>
+    </header>
+    
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    
+    <main>
+        <section id="about" class="section about-me">
+            <img src="c:\Users\Ayush\Downloads\profile pic.jpg.jpeg" alt="Dipti Singh" class="profile-pic-large">
+            <div class="about-content">
+                <h2>About Me</h2>
+                <p>Hello, I'm Dipti Singh, a passionate web developer student currently pursuing my degree at Techno main salt lake in CSE branch. I'm excited to showcase my growing skills in front-end and back-end development through this portfolio, which includes projects I've built using HTML, CSS My focus is on crafting user-friendly and visually appealing websites, and I'm always eager to learn new technologies to enhance my development capabilities."</p>
+                <p>As an Aspiring Web Developer, I blend creativity with technical skills to bring ideas to life. My journey in design is fueled by a passion for visual storytelling and a keen eye for aesthetics. I'm constantly exploring new design trends and techniques to push the boundaries of my craft.</p>
+            </div>
+        </section>
+        
+        <section id="portfolio" class="section">
+            <h2>Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/250/200" alt="Project 1">
+                    <div class="portfolio-item-content">
+                        <h3>Web Devlopment</h3>
+                        <p>A comprehensive brand identity project for a local eco-friendly startup.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/250/200" alt="Project 2">
+                    <div class="portfolio-item-content">
+                        <h3>Editorial Layout</h3>
+                        <p>Magazine spread design for a feature article on modern architecture.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/250/200" alt="Project 3">
+                    <div class="portfolio-item-content">
+                        <h3>graphic Design</h3>
+                        <p>Innovative packaging solution for a premium clothing brand.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills" class="section">
+            <h2>Skills</h2>
+            <div class="skills-list">
+                <span class="skill-item">Adobe Creative Suite</span>
+                <span class="skill-item">UI/UX Design</span>
+                <span class="skill-item">Graphic Designer</span>
+                <span class="skill-item">Branding</span>
+                <span class="skill-item">Illustration</span>
+                <span class="skill-item">HTML</span>
+                <span class="skill-item">CSS</span>
+                <span class="skill-item">Web Design</span>
+                <span class="skill-item">C++</span>
+                <span class="skill-item">Python</span>
+            </div>
+        </section>
+        
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:diptisingh11103@gmail.com">diptisingh11103@gmail.com</a></p>
+                <p>Phone: 7488971265</p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/dipti-singh-3b0274309/" target="_blank">linkedin.com/in/diptisingh</a></p>
+                <p>Github: <a href="https://github.com/dipti-2211" target="_blank">github.com/diptisingh</a></p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
